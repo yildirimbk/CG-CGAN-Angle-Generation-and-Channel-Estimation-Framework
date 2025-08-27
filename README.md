@@ -32,9 +32,11 @@ Note: You may see the distributions of each parameters by using the [see_dataset
 
 ## Training and Inference of CGAN Models for Angle Generation
 1. There are 4 architecturally identical conditional generative adversarial network (CGAN) models for each propagation paths. The first CGAN is trained with dataset which has 1 and more paths, the second CGAN model is trained with dataset, having 2 and more paths, and so on. Hence, first use [dataset_adjustment_to_create_only_nmore_path.m](dataset_adjustment_to_create_only_nmore_path.m) to create separate datasets for each CGAN model.
-   
-
-
+2. Train CGAN models:
+  * 1st path: Run [cgan_1st_path_angle_gen.py](cgan_1st_path_angle_gen.py)
+  * 2nd path: Run [cgan_2nd_path_angle_gen.py](cgan_2nd_path_angle_gen.py)
+  * 3rd path: Run [cgan_3rd_path_angle_gen.py](cgan_3rd_path_angle_gen.py)
+  * 4th path: Run [cgan_4th_path_angle_gen.py](cgan_4th_path_angle_gen.py)
 
 
 
