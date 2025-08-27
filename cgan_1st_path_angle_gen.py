@@ -68,7 +68,7 @@ with h5py.File(val_data1_path, 'r') as file:
     val_data1 = file['val_dataset'][:]
     val_data1 = val_data1.T
     print("Validation data loaded successfully:", val_data1.shape)
-test_data1_path = '/main/test_dataset_1_morepaths_10percent_k1_no_path_removed.mat'
+test_data1_path = '/main/test_dataset_1_morepaths_10percent_k1_no_path_removed.mat'  #change path with the current folder path that you are saving the dataset
 with h5py.File(test_data1_path, 'r') as file:
     test_data1 = file['test_dataset'][:]
     test_data1 = test_data1.T
@@ -875,4 +875,5 @@ if not activate_training:
     print("Visualizing final angle results on test data...")
     #visualize_results(generator, test_data_loader, device, num_samples=len(test_dataset))
     visualize_results(generator, test_data_loader, device, num_samples=10000, error_tolerance=1.) 
+
 
