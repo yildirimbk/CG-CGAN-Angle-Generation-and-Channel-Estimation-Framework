@@ -20,6 +20,12 @@ This repository contains the code implementation for the paper "Angle Generation
   6. Run [dataset_prep_all_BSs.py](dataset_prep_all_BSs.py) to create custom training, validation, and test datasets (In each row: BS location(x), BS location(y), UE location(x), BS location(y), distance, LoS status, Number of Paths (NoP), and ray tracing outputs)
 ![Dataset structure.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/dataset_structure.jpg)
 
+## Training and Inference of LoS Classifier
+1. Run [no_path_los_nlos_classification.py](no_path_los_nlos_classification.py) to save the KNN model.
+2. For inference, run [no_path_los_nlos_classification_inference.py](no_path_los_nlos_classification_inference.py)
+
+## Training and Inference of number of paths (NoP) Classifier
+1.
 
 
 
