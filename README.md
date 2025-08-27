@@ -31,7 +31,7 @@ Note: You may see the distributions of each parameters by using the [see_dataset
 2. Run [NoP_classifier.py](NoP_classifier.py): for training set _activate_training_ in line 36 to True, and set it to False for inference.
 
 ## Training and Inference of CGAN Models for Angle Generation
-1. There are 4 architecturaly identical conditional generative adversarial network (CGAN) models for each propagation paths. The first CGAN is trained with dataset which has 1 and more paths, the second GAN model is trained with dataset, having 2 and more paths, and so on. Hence, first use []() to create separate datasets for each CGAN model.
+1. There are 4 architecturaly identical conditional generative adversarial network (CGAN) models for each propagation paths. The first CGAN is trained with dataset which has 1 and more paths, the second CGAN model is trained with dataset, having 2 and more paths, and so on. Hence, first use []() to create separate datasets for each CGAN model.
    
 
 
