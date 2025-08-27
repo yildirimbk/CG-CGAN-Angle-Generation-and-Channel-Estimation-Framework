@@ -23,7 +23,7 @@ This repository contains the code implementation for the paper "Angle Generation
 Note: You may see the distributions of each parameters by using the [see_dataset_distributions_function.m](see_dataset_distributions_function.m) function for training, validation, and test datasets.
 
 ## Training and Inference of LoS Classifier
-1. Run [no_path_los_nlos_classification.py](no_path_los_nlos_classification.py) to save the KNN model.
+1. Run [no_path_los_nlos_classification.py](no_path_los_nlos_classification.py) to save the trained KNN model.
 2. For inference, run [no_path_los_nlos_classification_inference.py](no_path_los_nlos_classification_inference.py)
 
 ## Training and Inference of number of paths (NoP) Classifier
