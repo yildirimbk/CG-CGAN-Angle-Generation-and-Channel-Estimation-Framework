@@ -234,11 +234,6 @@ class GeneratorCNN(nn.Module):
         self.label_size = label_size 
         self.output_size = output_size  
         
-        # Input Projection Layers
-        embedding_dim = 128 # Intermediate dimension for combined input
-        self.input_proj1 = nn.Linear(self.z_size + self.label_size, embedding_dim)
-        self.input_proj2 = nn.Linear(embedding_dim, self.label_size) # Project to label_size dim
-        
         # Initial Conv Layer
         self.conv1 = nn.Conv1d(in_channels=1, out_channels=32, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm1d(32)
@@ -880,3 +875,4 @@ if not activate_training:
     print("Visualizing final angle results on test data...")
     #visualize_results(generator, test_data_loader, device, num_samples=len(test_dataset))
     visualize_results(generator, test_data_loader, device, num_samples=10000, error_tolerance=1.) 
+
