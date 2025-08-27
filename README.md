@@ -18,7 +18,7 @@ This repository contains the code implementation for the paper "Angle Generation
      * The base station (BS) location (_x,y,z_)
      * The distance from BS to UE
   6. Run [dataset_prep_all_BSs.py](dataset_prep_all_BSs.py) to create custom training, validation, and test datasets (In each row: BS location(x), BS location(y), UE location(x), BS location(y), distance, LoS status, Number of Paths (NoP), and ray tracing outputs)
-
+![alt text](http://url/to/img.png)
 
 
 
