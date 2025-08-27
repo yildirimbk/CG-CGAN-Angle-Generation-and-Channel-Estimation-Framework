@@ -18,7 +18,9 @@ This repository contains the code implementation for the paper "Angle Generation
      * The base station (BS) location (_x,y,z_)
      * The distance from BS to UE
   6. Run [dataset_prep_all_BSs.py](dataset_prep_all_BSs.py) to create custom training, validation, and test datasets (In each row: BS location(x), BS location(y), UE location(x), BS location(y), distance, LoS status, Number of Paths (NoP), and ray tracing outputs)
-![alt t]([http://[url](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/dataset_structure.jpg)/to/img.png](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/dataset_structure.jpg))
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/dataset_structure.jpg)
+
+
 
 
 
