@@ -153,17 +153,17 @@ with h5py.File(hdf5_file_path, 'w') as hdf5_file:
         all_BS_location.append(BS_location)
         all_dist_BS_UE.append(dist)
 
-
+true_channels_all_BS_Ugrid1_4_path_80_tr_20_test_k1
 #Save remaining datasets to pickled files
-with open('ray_tracing_output_all_BS_Ugrid1_4_path_80_tr_20_test.pkl', 'wb') as fp:
+with open('ray_tracing_output_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
     pickle.dump(all_rt_output, fp)
-with open('LoS_status_all_BS_Ugrid1_4_path_80_tr_20_test_w_phase_term.pkl', 'wb') as fp:
+with open('LoS_status_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
     pickle.dump(all_los_status, fp)
-with open('user_locations_all_BS_Ugrid1_4_path_80_tr_20_test_w_phase_term.pkl', 'wb') as fp:
+with open('user_locations_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
     pickle.dump(all_user_locations, fp)
-with open('BS_location_all_BS_Ugrid1_4_path_80_tr_20_test_w_phase_term.pkl', 'wb') as fp:
+with open('BS_location_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
     pickle.dump(all_BS_location, fp)
-with open('User_distances_to_all_BS_Ugrid1_4_path_80_tr_20_test_w_phase_term.pkl', 'wb') as fp:
+with open('User_distances_to_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
     pickle.dump(all_dist_BS_UE, fp)
 
 
@@ -203,3 +203,4 @@ plt.legend()
 # Show the plot
 plt.grid(True)
 plt.show()
+
