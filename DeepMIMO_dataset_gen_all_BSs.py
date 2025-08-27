@@ -12,7 +12,7 @@ import pickle
 parser = argparse.ArgumentParser(description='Input and Output Parameters Args')
 parser.add_argument('--scenario_name', default="O1_60",
                     help='Scenario Name')
-parser.add_argument('--dataset_folder', default=r'/home/user_name/Desktop/Dataset_generation', #change this path with your folder's path that contains O1_60 scenario folder
+parser.add_argument('--dataset_folder', default=r'/main', #change this path with your folder's path that contains O1_60 scenario folder
                     help='Copy the folder path of downloaded scenario folder')
 parser.add_argument('--dynamic_scenario_scenes', type=list, default=[1,5],
                     help='Determines the dynamic scenario scenes between [] values to be loaded.')
@@ -95,7 +95,7 @@ parameters = input_param(args, parameters)
 
                                             # Generate data
 filename = 'parameters_for_all_BS_Ugrid1_4_path_80tr_20test_k1.pkl' #to save selected parameters. This will be required to generate channels later. 
-path = r'/home/user_name/Desktop/Dataset_generation/All the BSs/4_path_80_tr_20_test/' + filename #change path with the current folder path that you are saving dataset
+path = r'/main' + filename #change path with the current folder path that you are saving dataset
 dataset = DeepMIMOv3.generate_data(parameters, path)
 
 
@@ -203,4 +203,5 @@ plt.legend()
 # Show the plot
 plt.grid(True)
 plt.show()
+
 
