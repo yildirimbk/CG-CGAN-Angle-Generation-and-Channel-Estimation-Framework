@@ -25,7 +25,12 @@ This repository contains the code implementation for the paper "Angle Generation
 2. For inference, run [no_path_los_nlos_classification_inference.py](no_path_los_nlos_classification_inference.py)
 
 ## Training and Inference of number of paths (NoP) Classifier
+1. Remove No-path users from dataset by running [dataset_adjustment_to_remove_zeros.m](dataset_adjustment_to_remove_zeros.m) file, which will create new datasets for NoP classification.
+2. Run [NoP_classifier.py](NoP_classifier.py): for training set _activate_training_ in line  True, and set it False for inference.
+
+## Training and Inference of CGAN Models for Angle Generation
 1.
+   
 
 
 
