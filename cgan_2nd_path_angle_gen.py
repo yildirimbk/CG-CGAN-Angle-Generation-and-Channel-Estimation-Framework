@@ -43,7 +43,7 @@ activate_training = True
 output_size = 4 # 4 angles of 1st path
 label_size = 11 #  2 user loc, 2bs loc and distance, azimuthal angle, elevation angle, and num_paths(length 3 vector)
 batch_size = 512  # Batch size can be reduced to 1 (Try more)
-g_loss_weight = 1e-2 # weight for angular loss or bce loss
+g_loss_weight = 1e-2 # weight for hybrid loss
 early_stopping_patience = 100 # Epochs to wait for val_mse improvement
 delta_h = 0.5 # for HuberLoss original value in v6
 z_size = 32             # Noise vector size
@@ -876,3 +876,4 @@ if not activate_training:
     print("Visualizing final angle results on test data...")
     #visualize_results(generator, test_data_loader, device, num_samples=len(test_dataset))
     visualize_results(generator, test_data_loader, device, num_samples=10000, error_tolerance=1.) 
+
