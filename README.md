@@ -41,8 +41,8 @@ Note: You may see the distributions of each parameters by using the [see_dataset
 Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 to the column number of path power or time of arrival(ToA)/delay to train CGAN models to generate these values.
 
 ## CG-CGAN Inference Pipeline to Generate Angle Values by using Trained Classifiers and CGAN models on the Test Dataset
-1. Run [ccgan_inference.py](cgcgan_inference.py) which uses test_dataset(including no_path users) and trained models (classifiers, and CGAN models and their weigths) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved KNN model, and saved model weights for NoP classifier and CGAN models).
-This file outputs the generated angle values for the entire test dataset. See below an example output of generated angles and their corresponding ground-truth values.
+1. Run [cgcgan_inference.py](cgcgan_inference.py) which uses test_dataset(including no_path users) and trained models (classifiers, and CGAN models and their weigths) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved KNN model, and saved model weights for NoP classifier and CGAN models).
+This file outputs the generated angle values for the entire test dataset. See below an example output of estimated NoP values, and  generated angles (bottom) and their corresponding ground-truth values (top) for the first 20 user-BS pairs in the test dataset.
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/dataset_structure.jpg)
 3. Run []() 
 
