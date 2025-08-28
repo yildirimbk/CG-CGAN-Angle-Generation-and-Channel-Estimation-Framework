@@ -17,7 +17,7 @@ from scipy.linalg import block_diag, cholesky
 np.random.seed(42)
 
 #Load Parameters (Required to generate channels)
-with open('parameters_for_all_BS_Ugrid1_4_path_w_phase_term_80tr_20test_k1.pkl', 'rb') as f:
+with open('parameters_for_all_BS_Ugrid1_4_path_80tr_20test_k1.pkl', 'rb') as f:
     ext_parameters = pickle.load(f)
 
 # Change BS Antenna Configuration    
@@ -55,9 +55,7 @@ kd_rx = 2*np.pi*rx_ant_params[c.PARAMSET_ANT_SPACING]
 
 antennapattern = AntennaPattern(tx_pattern = tx_ant_params[c.PARAMSET_ANT_RAD_PAT], rx_pattern = rx_ant_params[c.PARAMSET_ANT_RAD_PAT])
 
-
-
-# #FUNCTIONS FOR ARRAY RESPONSE CALCULATIONS
+#FUNCTIONS FOR ARRAY RESPONSE CALCULATIONS
 
 def array_response(ant_ind, theta, phi, kd):        
     gamma = array_response_phase(theta, phi, kd)
