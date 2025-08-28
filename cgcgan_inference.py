@@ -228,14 +228,14 @@ test_outputs_scaled4 = angle_outputs_scaler4.transform(test_outputs_o4)
 ESTIMATED_ANGLES = torch.zeros(len(test_labels_class_o),16) #4 angles and 4 paths
 
 ###Load Trained KNN Model
-with open('knn_no_path_los_nlos_classifier.pkl', 'rb') as knnmodel:
+with open('knn_no_path_los_nlos_classifier_80tr10test.pkl', 'rb') as knnmodel:
     knn_clf = pickle.load(knnmodel)
 
 ###Load Trained Number of Paths- MLP MODEL Parameters
 layer_sizes_mlp = [128, 256, 512, 256]
 output_size_mlp = 4
 input_size_mlp = 4
-trained_mlp_clssifier = "mlp_num_paths_classifier.pth"
+trained_mlp_clssifier = "best_chkpt_classification_4class_v1.pth"
 
 def load_checkpoint_mlp(file_path, classifier):
     if not os.path.exists(file_path):
@@ -286,10 +286,10 @@ z_size = 32
 output_size = 4
 label_size = 12 #For the 1st path and
 
-trained_angle_generator1 = "angle_generator_path_1.pth"
-trained_angle_generator2 = "angle_generator_path_2.pth"
-trained_angle_generator3 = "angle_generator_path_3.pth"
-trained_angle_generator4 = "angle_generator_path_4.pth"
+trained_angle_generator1 = "best_chkpt_cgan_angle_gen_4path_1p_v1.pth"
+trained_angle_generator2 = "best_chkpt_cgan_angle_gen_4path_2p_v1.pth"
+trained_angle_generator3 = "best_chkpt_cgan_angle_gen_4path_3p_v1.pth"
+trained_angle_generator4 = "best_chkpt_cgan_angle_gen_4path_4p_v1.pth"
 
 
 def load_checkpoint_generators(file_path, generator):
@@ -462,6 +462,7 @@ hdf5storage.write(
 
 
     
+
 
 
 
