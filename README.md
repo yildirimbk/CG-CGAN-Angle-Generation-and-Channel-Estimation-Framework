@@ -1,9 +1,10 @@
 # CG-CGAN-Channel-Estimation-Framework
 This repository contains the code implementation for the paper "Angle Generation and Channel Estimation via Classifiers-Guided Conditional GANs" by Bumin Kagan Yildirim, Asmaa Abdallah, Abdulkadir Celik, and Ahmed M. Eltawil.
-* To install environment use [cgcgan_project.yml](cgcgan_project.yml)
+
 # Instructions to reproduce paper result
 ## Creating the custom dataset from DeepMIMO
-  1. Install DeepMIMOv3 package from pip:
+* To install environment use [cgcgan_project.yml](cgcgan_project.yml)
+* Note: Use DeepMIMOv3 package
 ```python
   pip install deepmimo
 ```
