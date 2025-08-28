@@ -1,4 +1,4 @@
-name: deepmimo_project_v2
+name: cgcgan_project
 channels:
   - conda-forge
   - defaults
@@ -191,4 +191,3 @@ dependencies:
     - webencodings==0.5.1
     - wheel==0.44.0
     - xyzservices==2022.9.0
-prefix: /home/yildirbk/.conda/envs/deepmimo_project_v2
