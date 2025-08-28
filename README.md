@@ -37,6 +37,7 @@ Note: You may see the distributions of each parameters by using the [see_dataset
   * 2nd path: Run [cgan_2nd_path_angle_gen.py](cgan_2nd_path_angle_gen.py)
   * 3rd path: Run [cgan_3rd_path_angle_gen.py](cgan_3rd_path_angle_gen.py)
   * 4th path: Run [cgan_4th_path_angle_gen.py](cgan_4th_path_angle_gen.py)
+Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 to the column number of path power or time of arrival(ToA)/delay to train CGAN models to generate these values.
 
 
 
