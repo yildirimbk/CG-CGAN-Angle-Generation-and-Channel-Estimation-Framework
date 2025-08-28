@@ -138,7 +138,7 @@ if activate_training:
 
     if use_minmax_scaler_outputs:
 
-        joblib.dump(s_sc_outputs, "s_sc_outputs_minmaxscaler_4thss_CGAN.pkl")
+        joblib.dump(s_sc_outputs, "s_sc_outputs_minmaxscaler_4th_CGAN.pkl")
 
     else:
 
@@ -875,3 +875,4 @@ if not activate_training:
     print("Visualizing final angle results on test data...")
     #visualize_results(generator, test_data_loader, device, num_samples=len(test_dataset))
     visualize_results(generator, test_data_loader, device, num_samples=10000, error_tolerance=1.) 
+
