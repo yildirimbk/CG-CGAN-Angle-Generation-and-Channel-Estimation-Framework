@@ -42,7 +42,7 @@ Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 
 
 ## CG-CGAN Inference Pipeline to Generate Angle Values by using Trained Classifiers and CGAN models on the Test Dataset
 1. Run [cgcgan_inference.py](cgcgan_inference.py) which uses test_dataset(including no_path users) and trained models (classifiers, and CGAN models and their weigths) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved KNN model, and saved model weights for NoP classifier and CGAN models).
-This file outputs the generated angle values for the entire test dataset. See below an example output of estimated NoP values, and  generated angles (bottom) and their corresponding ground-truth values (top) for the first 20 user-BS pairs in the test dataset.
+This file outputs the generated angle values for the entire test dataset. See below an example output of estimated NoP values, and  generated angles (bottom) and their corresponding ground-truth values (top) for the first 20 user-BS pairs in the test dataset.(Column 1: NoP; Columns 2-5: Azimuth AoD; Columns 6-9: Elevation AoD; Columns 10-13: Azimuth AoA; Columns 14-17: Elevation AoA)
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/g_t_vs_generated_angles.jpg)
 3. Run []() 
 
