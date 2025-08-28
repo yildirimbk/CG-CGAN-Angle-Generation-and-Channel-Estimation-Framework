@@ -142,7 +142,7 @@ if activate_training:
 
     else:
 
-        joblib.dump(s_sc_outputs, "s_sc_outputs_stdmaxscaler_1st_CGAN.pkl")
+        joblib.dump(s_sc_outputs, "s_sc_outputs_stdscaler_1st_CGAN.pkl")
 
 #print(train_labels_o,train_labels_o.shape)
 train_labels_o, val_labels_o, test_labels_o = preprocessor.transform(train_labels_o), preprocessor.transform(val_labels_o), preprocessor.transform(test_labels_o)
@@ -875,5 +875,6 @@ if not activate_training:
     print("Visualizing final angle results on test data...")
     #visualize_results(generator, test_data_loader, device, num_samples=len(test_dataset))
     visualize_results(generator, test_data_loader, device, num_samples=10000, error_tolerance=1.) 
+
 
 
