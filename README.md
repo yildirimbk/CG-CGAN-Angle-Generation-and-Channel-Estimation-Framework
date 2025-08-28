@@ -44,7 +44,9 @@ Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 
 1. Run [cgcgan_inference.py](cgcgan_inference.py) which uses test_dataset(including no_path users) and trained models (classifiers, and CGAN models and their weigths) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved KNN model, and saved model weights for NoP classifier and CGAN models).
 This file outputs the generated angle values for the entire test dataset. See below an example output of estimated NoP values, and  generated angles (bottom) and their corresponding ground-truth values (top) for the first 20 user-BS pairs in the test dataset.(Column 1: NoP; Columns 2-5: Azimuth AoD; Columns 6-9: Elevation AoD; Columns 10-13: Azimuth AoA; Columns 14-17: Elevation AoA)
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/g_t_vs_generated_angles.jpg)
-3. Run []() 
+2. Run [save_g_t_and_gen_rt_outputs.py](save_g_t_and_gen_rt_outputs.py) to save ground_truth and generated ray tracing outputs. These files are required to generate receive (A<sub>R<sub>) and transmit (A<sub>T<sub>) array steering/response matrices via DeepMIMO generator without receiving error.
+3. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs be compatible with DeepMIMO generator.
+4. Run [save_error_responses.py](save_error_responses.py) to generate and save A<sub>R<sub> and A<sub>T<sub>.
 
 
 
