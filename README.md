@@ -1,7 +1,7 @@
 # CG-CGAN-Channel-Estimation-Framework
 This repository contains the code implementation for the paper "Angle Generation and Channel Estimation via Classifiers-Guided Conditional GANs" by Bumin Kagan Yildirim, Asmaa Abdallah, Abdulkadir Celik, and Ahmed M. Eltawil.
 
-# Instructions to reproduce paper result
+# Instructions to reproduce the paper result
 ## Creating the custom dataset from DeepMIMO
 * To install environment use [cgcgan_project.yml](cgcgan_project.yml)
 * Note: Use DeepMIMOv3 package
@@ -23,15 +23,15 @@ This repository contains the code implementation for the paper "Angle Generation
 
 Note: You may see the distributions of each parameters by using the [see_dataset_distributions_function.m](see_dataset_distributions_function.m) function for training, validation, and test datasets.
 
-## Training and Inference of LoS Classifier
+## Training and inference of LoS classifier
 1. Run [no_path_los_nlos_classification.py](no_path_los_nlos_classification.py) to save the trained KNN model.
 2. For inference, run [no_path_los_nlos_classification_inference.py](no_path_los_nlos_classification_inference.py)
 
-## Training and Inference of number of paths (NoP) Classifier
+## Training and inference of number of paths (NoP) classifier
 1. Remove No-path users from dataset by running [dataset_adjustment_to_remove_zeros.m](dataset_adjustment_to_remove_zeros.m) file, which will create new datasets for NoP classification.
 2. Run [NoP_classifier.py](NoP_classifier.py): for training set _activate_training_ in line 36 to True, and set it to False for inference.
 
-## Training and Inference of CGAN Models for Angle Generation
+## Training and inference of CGAN models for angle generation
 1. There are 4 architecturally identical conditional generative adversarial network (CGAN) models for each propagation paths. The first CGAN is trained with dataset which has 1 and more paths, the second CGAN model is trained with dataset, having 2 and more paths, and so on. Hence, first use [dataset_adjustment_to_create_only_nmore_path.m](dataset_adjustment_to_create_only_nmore_path.m) to create separate datasets for each CGAN model.
 2. Train CGAN models (for training set _activate_training_ in line 42 to True, and set it to False for inference.)
   * 1st path: Run [cgan_1st_path_angle_gen.py](cgan_1st_path_angle_gen.py)
@@ -41,7 +41,7 @@ Note: You may see the distributions of each parameters by using the [see_dataset
 
 Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 to the column number of path power or time of arrival(ToA)/delay to train CGAN models to generate these values.
 
-## CG-CGAN Inference Pipeline to Generate Angle Values by using Trained Classifiers and CGAN models on the Test Dataset
+## CG-CGAN inference pipeline to generate angle values by using trained classifiers and CGAN models on the test dataset
 1. Run [cgcgan_inference.py](cgcgan_inference.py) which uses test_dataset(including no_path users) and trained models (classifiers, and CGAN models and their weigths) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved KNN model, and saved model weights for NoP classifier and CGAN models).
 This file outputs the generated angle values for the entire test dataset. See below an example output of estimated NoP values, and  generated angles (bottom) and their corresponding ground-truth values (top) for the first 20 user-BS pairs in the test dataset.(Column 1: NoP; Columns 2-5: Azimuth AoD; Columns 6-9: Elevation AoD; Columns 10-13: Azimuth AoA; Columns 14-17: Elevation AoA)
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/g_t_vs_generated_angles.jpg)
