@@ -1,4 +1,3 @@
-#v2: with Asmaa's code-4path channel estimation with generated angles
 import sys
 sys.argv = ['']
 # import DeepMIMOv3
