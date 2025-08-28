@@ -98,7 +98,8 @@ train_outputs_o_r, val_outputs_o_r, test_outputs_o_r = train_outputs_o-1, val_ou
 s_sc_label_mlp = StandardScaler()
 # s_sc_outputs = StandardScaler()
 s_sc_label_mlp.fit(train_labels_o)
-# joblib.dump(s_sc_label_mlp, "label_scaler_mlp.pkl")
+if activate_training:
+    joblib.dump(s_sc_label_mlp, "label_scaler_mlp.pkl")
 # sys.exit()
 # s_sc_outputs.fit(train_outputs_o)
 train_labels_o, val_labels_o, test_labels_o = s_sc_label_mlp.transform(train_labels_o), s_sc_label_mlp.transform(val_labels_o), s_sc_label_mlp.transform(test_labels_o)
