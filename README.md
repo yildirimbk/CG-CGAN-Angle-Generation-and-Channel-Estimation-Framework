@@ -47,4 +47,5 @@ This file outputs the generated angle values for the entire test dataset. See be
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/g_t_vs_generated_angles.jpg)
 2. Run [save_g_t_and_gen_rt_outputs.py](save_g_t_and_gen_rt_outputs.py) to save ground_truth and generated ray tracing outputs. These files are required to generate receive (A<sub>R</sub>) and transmit (A<sub>T</sub>) array steering/response matrices via DeepMIMO generator without receiving error.
 3. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs be compatible with DeepMIMO generator.
-4. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
+4. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
+5. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
