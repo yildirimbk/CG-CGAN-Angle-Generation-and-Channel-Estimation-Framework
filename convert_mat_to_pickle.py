@@ -6,7 +6,7 @@ import numpy as np
 # Load .mat file
 mat_data = scipy.io.loadmat('real_rt_outputs_4path_after_matlab.mat')
 mat_structs_real = mat_data['data_real'].flatten()
-mat_data = scipy.io.loadmat('generated_rt_outputs_w_delay_power_after_matlab.mat')
+mat_data = scipy.io.loadmat('generated_rt_outputs_after_matlab.mat')
 mat_structs_generated = mat_data['data_generated'].flatten()
 
 
@@ -40,8 +40,8 @@ for entry in mat_structs_generated:
     converted_data_generated.append(python_dict)
 
 # Save as a pickle file
-#with open('real_rt_outputs_4path_after_matlab.pkl', 'wb') as f:
-#    pickle.dump(converted_data_real, f)
+with open('real_rt_outputs_4path_after_matlab.pkl', 'wb') as f:
+    pickle.dump(converted_data_real, f)
 
-with open('generated_rt_outputs_w_delay_power_after_matlab.pkl', 'wb') as f:
+with open('generated_rt_outputs_after_matlab.pkl', 'wb') as f:
     pickle.dump(converted_data_generated, f)
