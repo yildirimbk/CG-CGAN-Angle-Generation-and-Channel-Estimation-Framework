@@ -65,7 +65,7 @@ end
 
 
 
-save('real_rt_outputs_4path_after_matlab.mat', 'data_real');
+save('real_rt_outputs_after_matlab.mat', 'data_real');
 save('generated_rt_outputs_after_matlab.mat', 'data_generated');
 end
 
