@@ -23,7 +23,7 @@ This repository contains the code implementation for the paper "Angle Generation
 
 Note: You may see the distributions of each parameter by using the [see_dataset_distributions_function.m](see_dataset_distributions_function.m) function for training, validation, and test datasets.
 
-## Training and inference of LoS classifier
+## Training and inference of LoS classifier (REPLACE WITH MLP)
 1. Run [no_path_los_nlos_classification.py](no_path_los_nlos_classification.py) to save the trained KNN model.
 2. For inference, run [no_path_los_nlos_classification_inference.py](no_path_los_nlos_classification_inference.py)
 
@@ -49,3 +49,4 @@ This file outputs the generated angle values for the entire test dataset. See be
 3. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs compatible with the DeepMIMO generator.
 4. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
 5. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
+6. ADDD NMSE ESTIMATION CODES MATLAB.
