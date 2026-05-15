@@ -13,8 +13,8 @@ import os
 parser = argparse.ArgumentParser(description='Input and Output Parameters Args')
 parser.add_argument('--scenario_name', default="O1_60",
                     help='Scenario Name')
-parser.add_argument('--dataset_folder', default=r'/main', #change this path with your folder's path that contains O1_60 scenario folder
-                    help='Copy the folder path of downloaded scenario folder')
+parser.add_argument('--dataset_folder', default='/path/to/deepmimo/scenarios',
+                    help='Path to the folder containing the downloaded scenario folder (e.g., O1_60). Required.')
 parser.add_argument('--dynamic_scenario_scenes', type=list, default=[1,5],
                     help='Determines the dynamic scenario scenes between [] values to be loaded.')
 parser.add_argument('--num_paths', type=int, default=4,
