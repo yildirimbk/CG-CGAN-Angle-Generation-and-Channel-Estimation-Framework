@@ -2,6 +2,7 @@
 #Next 2 lines for running in an interactive window, uncomment them if you run this file partially/fully in an interactive window
 # import sys
 # sys.argv = ['']
+import sys
 import DeepMIMOv3
 import numpy as np
 import argparse
