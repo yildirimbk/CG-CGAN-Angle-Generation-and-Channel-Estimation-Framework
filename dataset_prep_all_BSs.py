@@ -1,7 +1,8 @@
-#dataset_info
+#Next 2 lines for running in an interactive window, uncomment them if you run this file partially/fully in an interactive window
+# import sys
+# sys.argv = ['']
 import sys
-sys.argv = ['']
-# import DeepMIMOv3
+import os
 import pickle
 import h5py
 import hdf5storage
@@ -13,35 +14,43 @@ import time
 import copy
 from sklearn.model_selection import train_test_split
 
+# Must match the run_tag used in DeepMIMO_dataset_gen_all_BSs.py
+RUN_TAG = 'O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1'
+INPUT_DIR = 'outputs'
+OUTPUT_DIR = 'outputs'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 #Load Parameters (Required to generate channels)
-with open('parameters_for_all_BS_Ugrid1_4_path_80tr_20test_k1.pkl', 'rb') as f:
+with open(os.path.join(INPUT_DIR, f'parameters_{RUN_TAG}.pkl'), 'rb') as f:
     ext_parameters = pickle.load(f)
 
 #Load RayTracing Output
-with open('ray_tracing_output_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'rb') as f:
+with open(os.path.join(INPUT_DIR, f'ray_tracing_output_{RUN_TAG}.pkl'), 'rb') as f:
     rayt_output = pickle.load(f)
 rayt_output = np.concatenate(rayt_output)
 
-
 #Load LoS status of Users
-with open('LoS_status_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'rb') as f:
+with open(os.path.join(INPUT_DIR, f'LoS_status_{RUN_TAG}.pkl'), 'rb') as f:
     LoS_status = pickle.load(f)
 LoS_status = np.concatenate(LoS_status)
+
 #Load BS Location
-with open('BS_location_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'rb') as f:
+with open(os.path.join(INPUT_DIR, f'BS_location_{RUN_TAG}.pkl'), 'rb') as f:
     BS_location = pickle.load(f)
 BS_location = np.concatenate(BS_location)
 
 #Load User Locations
-with open('user_locations_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'rb') as f:
+with open(os.path.join(INPUT_DIR, f'user_locations_{RUN_TAG}.pkl'), 'rb') as f:
     user_locations = pickle.load(f)
 user_locations = np.concatenate(user_locations)
+
 #Load User distances to BS
-with open('User_distances_to_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'rb') as f:
+with open(os.path.join(INPUT_DIR, f'User_distances_to_{RUN_TAG}.pkl'), 'rb') as f:
     user_dists_to_BS = pickle.load(f)
 user_dists_to_BS = np.concatenate(user_dists_to_BS)
+
 #Load True Channels between Users and BS
-with h5py.File('true_channels_all_BS_Ugrid1_4_path_80_tr_20_test_k1.hdf5', 'r') as hdf:
+with h5py.File(INPUT_DIR, f'true_channels_{run_tag}.hdf5', 'r') as hdf:
     true_channels = hdf['true_channel matrices'] #Shape ((497931, 8, 32, 1) if multiple BSs (#of selected BS, USERS, Rx, Tx antennas)
     true_channels = np.squeeze(true_channels)  # Shape becomes (497931, 8, 32)
     true_channels = true_channels.reshape(-1, true_channels.shape[1], true_channels.shape[2]) # Shape becomes (497931*3, 8, 32)
