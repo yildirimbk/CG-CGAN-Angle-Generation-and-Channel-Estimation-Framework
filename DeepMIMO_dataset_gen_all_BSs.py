@@ -1,7 +1,7 @@
 #DeepMIMO dataset generation
-#Next 2 lines for to run in interactive window
-import sys
-sys.argv = ['']
+#Next 2 lines for running in an interactive window, uncomment them if you run this file partially/fully in an interactive window
+# import sys
+# sys.argv = ['']
 import DeepMIMOv3
 import numpy as np
 import argparse
@@ -9,6 +9,7 @@ from adjustable_input_param import get_adjustable_parameters as input_param
 import h5py
 import pickle
 import os
+import matplotlib.pyplot as plt 
 
 parser = argparse.ArgumentParser(description='Input and Output Parameters Args')
 parser.add_argument('--scenario_name', default="O1_60",
@@ -96,7 +97,6 @@ os.makedirs(output_dir, exist_ok=True)
 
 # Load the default parameters
 parameters = DeepMIMOv3.default_params()
-#parameters = {}
 
 # Set scenario name
 parameters['scenario'] = args.scenario_name
@@ -119,8 +119,8 @@ path = os.path.join(output_dir, filename)
 dataset = DeepMIMOv3.generate_data(parameters, path)
 
                                             #Extract Output Parameters
+bs_indices = list(range(len(args.active_BS))) #0 for the 1st BS index
 
-bs_indices=list(range(18)) # (0 for BS 1) for all BSs
 
 # Initialize variables for concatenating all data
 
@@ -190,8 +190,7 @@ with open(os.path.join(output_dir, f'User_distances_to_{run_tag}.pkl'), 'wb') as
 
 #from DeepMIMOv3.visualization import plot_LoS_status, plot_coverage
 
-# Implementation of matplotlib function 
-import matplotlib.pyplot as plt 
+# Visualization for the last BS in bs_indices only
 
 x_coord = user_location[:,0]
 y_coord = user_location[:,1]
