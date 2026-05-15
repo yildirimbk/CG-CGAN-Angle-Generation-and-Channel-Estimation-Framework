@@ -8,6 +8,7 @@ import argparse
 from adjustable_input_param import get_adjustable_parameters as input_param
 import h5py
 import pickle
+import os
 
 parser = argparse.ArgumentParser(description='Input and Output Parameters Args')
 parser.add_argument('--scenario_name', default="O1_60",
@@ -75,6 +76,24 @@ parser.add_argument('--OFDM_Rxfilter', default = 0,
                           or disable (0-False) for no receive filter.')
 args = parser.parse_args()
 
+# Build a descriptive run tag from the actual configuration
+def make_run_tag(args):
+    bs_shape = 'x'.join(map(str, args.BS_antenna_shape))
+    ue_shape = 'x'.join(map(str, args.user_antenna_shape))
+    sc_str   = '_'.join(map(str, args.OFDM_selectedsubcarriers))
+    return (
+        f"{args.scenario_name}"
+        f"_Lp{args.num_paths}"
+        f"_BS{len(args.active_BS)}"
+        f"_rows{args.user_rows[0]}-{args.user_rows[1]}"
+        f"_TX{bs_shape}_RX{ue_shape}"
+        f"_sc{sc_str}"
+    )
+
+run_tag = make_run_tag(args)
+output_dir = 'outputs'
+os.makedirs(output_dir, exist_ok=True)
+
 # Load the default parameters
 parameters = DeepMIMOv3.default_params()
 #parameters = {}
@@ -94,10 +113,10 @@ parameters = input_param(args, parameters)
 # print(parameters['active_BS'])
 
                                             # Generate data
-filename = 'parameters_for_all_BS_Ugrid1_4_path_80tr_20test_k1.pkl' #to save selected parameters. This will be required to generate channels later. 
-path = r'/main' + filename #change path with the current folder path that you are saving dataset
-dataset = DeepMIMOv3.generate_data(parameters, path)
 
+filename = f'parameters_{run_tag}.pkl'               #to save selected parameters. This will be required to generate channels later. 
+path = os.path.join(output_dir, filename)
+dataset = DeepMIMOv3.generate_data(parameters, path)
 
                                             #Extract Output Parameters
 
@@ -111,7 +130,7 @@ all_user_locations = []
 all_BS_location = []
 all_dist_BS_UE = []
 
-hdf5_file_path = 'true_channels_all_BS_Ugrid1_4_path_80_tr_20_test_k1.hdf5'
+hdf5_file_path = os.path.join(output_dir, f'true_channels_{run_tag}.hdf5')
 chunk_size = 1000  # Number of users to process at a time
 
 # Initialize the HDF5 dataset
@@ -153,18 +172,18 @@ with h5py.File(hdf5_file_path, 'w') as hdf5_file:
         all_BS_location.append(BS_location)
         all_dist_BS_UE.append(dist)
 
-true_channels_all_BS_Ugrid1_4_path_80_tr_20_test_k1
 #Save remaining datasets to pickled files
-with open('ray_tracing_output_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
+with open(os.path.join(output_dir, f'ray_tracing_output_{run_tag}.pkl'), 'wb') as fp:
     pickle.dump(all_rt_output, fp)
-with open('LoS_status_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
+with open(os.path.join(output_dir, f'LoS_status_{run_tag}.pkl'), 'wb') as fp:
     pickle.dump(all_los_status, fp)
-with open('user_locations_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
+with open(os.path.join(output_dir, f'user_locations_{run_tag}.pkl'), 'wb') as fp:
     pickle.dump(all_user_locations, fp)
-with open('BS_location_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
+with open(os.path.join(output_dir, f'BS_location_{run_tag}.pkl'), 'wb') as fp:
     pickle.dump(all_BS_location, fp)
-with open('User_distances_to_all_BS_Ugrid1_4_path_80_tr_20_test_k1.pkl', 'wb') as fp:
+with open(os.path.join(output_dir, f'User_distances_to_{run_tag}.pkl'), 'wb') as fp:
     pickle.dump(all_dist_BS_UE, fp)
+
 
 
                                         #Visualization
