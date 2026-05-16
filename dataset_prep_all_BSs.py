@@ -224,43 +224,43 @@ matfiledata = {
 
 hdf5storage.write(
     { "training_data": training_data },
-    path='.',
-    filename="training_dataset_4_path_80percent_k1.mat",
+    path=OUTPUT_DIR,
+    filename=f"training_dataset_{RUN_TAG}.mat",
     matlab_compatible=True
 )
 
 hdf5storage.write(
     { "val_data": val_data },
-    path='.',
-    filename="validation_dataset_4_path_10percent_k1.mat",
+    path=OUTPUT_DIR,
+    filename=f"validation_dataset_{RUN_TAG}.mat",
     matlab_compatible=True
 )
 
 hdf5storage.write(
     { "test_data": test_data },
-    path='.',
-    filename="test_dataset_4_path_10percent_k1.mat",
+    path=OUTPUT_DIR,
+    filename=f"test_dataset_{RUN_TAG}.mat",
     matlab_compatible=True
 )
 
 hdf5storage.write(
     { "true_channels_training_data": true_channels_training_data },
-    path='.',
-    filename="true_channels_training_data_4_path_80percent_k1.mat",
+    path=OUTPUT_DIR,
+    filename=f"true_channels_training_data_{RUN_TAG}.mat",
     matlab_compatible=True
 )
 
 hdf5storage.write(
     { "true_channels_val_data": true_channels_val_data },
-    path='.',
-    filename="true_channels_validation_data_4_path_10percent_k1.mat",
+    path=OUTPUT_DIR,
+    filename=f"true_channels_validation_data_{RUN_TAG}.mat",
     matlab_compatible=True
 )
 
 hdf5storage.write(
     { "true_channels_test_data": true_channels_test_data },
-    path='.',
-    filename="true_channels_test_data_4_path_10percent_k1.mat",
+    path=OUTPUT_DIR,
+    filename=f"true_channels_test_data_{RUN_TAG}.mat",
     matlab_compatible=True
 
 )
