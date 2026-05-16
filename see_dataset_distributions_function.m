@@ -1,4 +1,9 @@
 function [] = see_dataset_distributions_function(training_dataset, test_dataset, value, num_bins, only_comb)
+% SEE_DATASET_DISTRIBUTIONS_FUNCTION Plot histograms of selected columns.
+%   training_dataset, test_dataset: paths to .mat files
+%   value: vector of column indices to plot (e.g., [5, 6, 7])
+%   num_bins: number of histogram bins (e.g., 100)
+%   only_comb: if 1, plot only the combined dataset; if 0, plot train/test/combined separately
 
 %Load Datasets
 training_dataset_loaded_o = load(training_dataset);
