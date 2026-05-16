@@ -64,7 +64,8 @@ ORDINAL = f'{CGAN_INDEX}{ordinal_suffix(CGAN_INDEX)}'
 ### MODEL PARAMETERS ###
 activate_training = True
 
-output_size              = 4                                  # 4 angles per path
+output_size = 4   # 4 angles per path. Set to 1 if generating a scalar quantity per path
+                  # (e.g., path power or time of arrival). See README note about scaling.
 label_size               = 9 + MAX_PATHS - CGAN_INDEX         # geometry(5) + LoS(1) + geo_angles(2) + num_paths OHE
 batch_size               = 512
 g_loss_weight            = 1e-2
@@ -107,7 +108,7 @@ def Custom_Dataset(dataset_type):
     label vector (without LoS, without num_paths) for scaler fitting.
     """
     # Angle output columns for path CGAN_INDEX
-    output_cols = [7 + (CGAN_INDEX - 1) + k * MAX_PATHS for k in range(4)]
+    output_cols = [7 + (CGAN_INDEX - 1) + k * MAX_PATHS for k in range(4)] #for Power and Delay (ToA) generation, find the corresponding column per path in the dataset.
     outputs = dataset_type[:, output_cols].astype(np.float32)
 
     # Geometry-derived angles
