@@ -1,5 +1,5 @@
 """
-Compute and save TX and RX array response matrices for both ground-truth and CGGAN-generated
+Compute and save TX and RX array response matrices for both ground-truth and CG-CGAN-generated
 ray-tracing outputs. Saves four HDF5 files, one per (source, side) combination, with one
 dataset per channel.
 
