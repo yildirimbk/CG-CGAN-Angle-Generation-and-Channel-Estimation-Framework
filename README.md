@@ -28,7 +28,7 @@ Note: You may see the distributions of each parameter by using the [see_dataset_
 
 ## Training and inference of the number of paths (NoP) classifier
 1. Remove No-path users from the dataset by running [dataset_adjustment_to_remove_zeros.m](dataset_adjustment_to_remove_zeros.m) file, which will create new datasets for NoP classification.
-2. Run [NoP_classifier.py](NoP_classifier.py): for training set _activate_training_ in line 36 to True, and set it to False for inference.
+2. Run [MLP_NoP_classifier.py](MLP_NoP_classifier.py): for training set _activate_training_ in line 36 to True, and set it to False for inference.
 
 ## Training and inference of CGAN models for angle generation
 1. There are 4 architecturally identical conditional generative adversarial network (CGAN) models for each propagation path. The first CGAN is trained on a dataset with 1 or more paths; the second CGAN is trained on a dataset with 2 or more paths, and so on. Hence, first use [dataset_adjustment_to_create_only_nmore_path.m](dataset_adjustment_to_create_only_nmore_path.m) to create separate datasets for each CGAN model.
