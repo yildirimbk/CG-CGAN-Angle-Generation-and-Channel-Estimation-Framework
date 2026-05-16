@@ -36,9 +36,15 @@ Note: You may see the distributions of each parameter by using the [see_dataset_
 
 Note: This script defaults to generating the four angles per path (AoD azimuth, AoD elevation, AoA azimuth, AoA elevation). To instead train a CGAN that generates power or time-of-arrival (ToA/delay), set _output_size_ = 1 in line 67 and replace _output_cols_ in line 111 with the appropriate column index. Power and ToA values are in physical units (Watts and seconds), so they have a much wider dynamic range than angles; verify that the MinMaxScaler produces sensible scaled values for your data, and consider a log transform if not.
 
-## CG-CGAN inference pipeline to generate angle values by using trained classifiers and CGAN models on the test dataset
-1. Run [cgcgan_inference.py](cgcgan_inference.py), which uses test_dataset(including no_path users) and trained models (classifiers, CGAN models, and their weights) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved the KNN model, and saved model weights for the NoP classifier and CGAN models).
-This file outputs the generated angle values for the entire test dataset. See below an example output of estimated NoP values, and  generated angles (bottom) and their corresponding ground-truth values (top) for the first 20 user-BS pairs in the test dataset. (Column 1: NoP; Columns 2-5: Azimuth AoD; Columns 6-9: Elevation AoD; Columns 10-13: Azimuth AoA; Columns 14-17: Elevation AoA)
+## CG-CGAN end-to-end inference pipeline to generate angle values by using trained classifiers and CGAN models on the test dataset
+1. Run [cgcgan_inference.py](cgcgan_inference.py), to generate angles for the entire test dataset using the trained classifiers and CGAN models. This script requires the following files from prior steps:
+Test split: test_dataset_{RUN_TAG}.mat
+LoS classifier: mlp_los_classifier.pth and mlp_los_location_labels_scaler.pkl
+NoP classifier: mlp_num_paths_classifier.pth and mlp_nop_location_labels_scaler.pkl
+Per-path generators: angle_generator_path_{p}.pth for p = 1..MAX_PATHS
+Per-path scalers: test_label_scaler_{ordinal}_path.pkl and outputs_minmaxscaler_{ordinal}_path.pkl
+
+The output estimated_angles_{RUN_TAG}.mat contains a matrix of shape (num_samples, 4 * MAX_PATHS). The 4 angles per path are stored in the column layout: columns 1 to MAX_PATHS hold azimuth AoD across paths, columns MAX_PATHS+1 to 2*MAX_PATHS hold elevation AoD, then azimuth AoA, then elevation AoA. The image below compares ground-truth angles (top row) with generated angles (bottom row) for the first 20 user-BS pairs in the test dataset.
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/g_t_vs_generated_angles.jpg)
 2. Run [save_g_t_and_gen_rt_outputs.py](save_g_t_and_gen_rt_outputs.py) to save ground_truth and generated ray tracing outputs. These files are required to generate receive (A<sub>R</sub>) and transmit (A<sub>T</sub>) array steering/response matrices via the DeepMIMO generator without receiving error.
 3. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs compatible with the DeepMIMO generator.
