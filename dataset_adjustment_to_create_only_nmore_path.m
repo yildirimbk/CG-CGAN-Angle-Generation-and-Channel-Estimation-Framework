@@ -1,41 +1,40 @@
-%% Dataset Adjustments and Creation for CGAN models
+%% Create per-CGAN training datasets
+% Each CGAN model i is trained on samples with at least i paths.
+% The loop filters incrementally: iteration i removes samples with fewer than i paths
+% from the result of iteration i-1, which is correct since the filter is monotone.
 clc;
 clear;
 close all;
-max_num_paths=4;
-cgan_index = 1; %1 is not needed if no_path_removed files are used, then start from 2
 
-% %Load Datasets
-training_dataset1 = load('training_dataset_4_path_80percent_k1_no_path_removed.mat');
-val_dataset1 = load('validation_dataset_4_path_10percent_k1_no_path_removed.mat');
-test_dataset1 = load('test_dataset_4_path_10percent_k1_no_path_removed.mat');
+% Must match the run_tag used in earlier scripts
+RUN_TAG = 'O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1';
 
-training_dataset2 = struct2table(training_dataset1);
-training_dataset = table2array(training_dataset2);
+max_num_paths = 4;
+cgan_index    = 2;   % Start at 2 because no-path-removed files already have >= 1 path.
+                     % Set to 1 only if you are working with files that still include no-path users.
 
-val_dataset2 = struct2table(val_dataset1);
-val_dataset = table2array(val_dataset2);
+% Load no-path-removed datasets
+training_dataset_loaded = load(['outputs/training_dataset_'   RUN_TAG '_no_path_removed.mat']);
+val_dataset_loaded      = load(['outputs/validation_dataset_' RUN_TAG '_no_path_removed.mat']);
+test_dataset_loaded     = load(['outputs/test_dataset_'       RUN_TAG '_no_path_removed.mat']);
 
-test_dataset2 = struct2table(test_dataset1);
-test_dataset = table2array(test_dataset2);
+training_dataset = training_dataset_loaded.training_data;
+val_dataset      = val_dataset_loaded.val_data;
+test_dataset     = test_dataset_loaded.test_data;
 
-for i=cgan_index:max_num_paths
+% Column 7 (1-indexed) is the number of paths
+for i = cgan_index:max_num_paths
+    % Keep only rows with at least i paths
+    training_dataset = training_dataset(training_dataset(:,7) >= i, :);
+    val_dataset      = val_dataset(     val_dataset(:,7)      >= i, :);
+    test_dataset     = test_dataset(    test_dataset(:,7)     >= i, :);
 
 
-    % Find 1_path(1) or n_path and keep them
-    npath_ind_tr = find(training_dataset(:,7)>=i); %7 change this from 1 to 4
-    npath_ind_val = find(val_dataset(:,7)>=i);
-    npath_ind_test = find(test_dataset(:,7)>=i);
+    training_data = training_dataset;
+    val_data      = val_dataset;
+    test_data     = test_dataset;
 
-    training_dataset=training_dataset(npath_ind_tr,:);
-    val_dataset = val_dataset(npath_ind_val,:);
-    test_dataset = test_dataset(npath_ind_test,:);
-
-    filename = sprintf('training_dataset_%d_morepaths_80percent_k1_no_path_removed.mat', i);
-    save(filename, 'training_dataset', '-v7.3');
-    filename2 = sprintf('validation_dataset_%d_morepaths_10percent_k1_no_path_removed.mat', i);
-    save(filename2, 'val_dataset', '-v7.3');
-    filename3 = sprintf('test_dataset_%d_morepaths_10percent_k1_no_path_removed.mat', i);
-    save(filename3, 'test_dataset', '-v7.3');
-
+    save(['outputs/training_dataset_'   RUN_TAG sprintf('_%d_morepaths.mat',  i)], 'training_data', '-v7.3');
+    save(['outputs/validation_dataset_' RUN_TAG sprintf('_%d_morepaths.mat',  i)], 'val_data',      '-v7.3');
+    save(['outputs/test_dataset_'       RUN_TAG sprintf('_%d_morepaths.mat',  i)], 'test_data',     '-v7.3');
 end
