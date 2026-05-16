@@ -45,11 +45,22 @@ generated_channels_path = os.path.join(OUTPUT_DIR, f'generated_channels_test_{RU
 with open(parameters_pkl_path, 'rb') as f:
     ext_parameters = pickle.load(f)
 
+#print(ext_parameters)
+# Change BS Antenna Configuration
+#for bs in range(18):
+#   ext_parameters['bs_antenna'][bs]['shape'] = [16,8]
+
+# Change User Antenna Configuration
+#ext_parameters['ue_antenna']['shape'] = [4,4]
+
+
 print('BS antenna shape:', ext_parameters['bs_antenna'][0]['shape'])
 print('UE antenna shape:', ext_parameters['ue_antenna']['shape'])
 
 tx_ant_params = ext_parameters['bs_antenna'][0]
 rx_ant_params = ext_parameters['ue_antenna']
+#Convert list to dictionary
+tx_ant_params = tx_ant_params[0]
 
 with open(real_rt_pkl_path, 'rb') as f:
     real_rt_output = pickle.load(f)
