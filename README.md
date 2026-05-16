@@ -53,4 +53,5 @@ The inference script saves four files needed for the downstream MATLAB channel-e
 
 3. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
 7. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
-8. ADDD NMSE ESTIMATION CODES MATLAB.
+8. (Optional) We have already split the test dataset for channel data. You may directly use it in subsequent MATLAB file for channel estimation or you can create the test dataset channel again by running the [manual_DeepMIMO_channel_generation.py](manual_DeepMIMO_channel_generation.py). To run this you need [helper_manual_DeepMIMO_channel_generation.py](helper_manual_DeepMIMO_channel_generation.py).
+9. 
