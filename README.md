@@ -31,11 +31,10 @@ Note: You may see the distributions of each parameter by using the [see_dataset_
 2. Run [MLP_NoP_classifier.py](MLP_NoP_classifier.py): for training set _activate_training_ in line 36 to True, and set it to False for inference.
 
 ## Training and inference of CGAN models for angle generation
-1. There are 4 architecturally identical conditional generative adversarial network (CGAN) models for each propagation path. The first CGAN is trained on a dataset with 1 or more paths; the second CGAN is trained on a dataset with 2 or more paths, and so on. Hence, first use [dataset_adjustment_to_create_only_nmore_path.m](dataset_adjustment_to_create_only_nmore_path.m) to create separate datasets for each CGAN model.
-2. Train CGAN models by running with [unified_cgan_angle_gen.py](unified_cgan_angle_gen.py) desired _cgan_index_ in line (for training set _activate_training_ in line 42 to True, and set it to False for inference.)
+1. One CGAN model is trained per propagation path. With four paths in the default dataset, this yields four CGANs, all sharing the same architecture but trained on different filtered subsets: CGAN i is trained on samples with at least i paths. The first CGAN is trained on a dataset with 1 or more paths; the second CGAN is trained on a dataset with 2 or more paths, and so on. Hence, first use [dataset_adjustment_to_create_only_nmore_path.m](dataset_adjustment_to_create_only_nmore_path.m) to create separate datasets for each CGAN model.
+2. Train CGAN models by running with [unified_cgan_angle_gen.py](unified_cgan_angle_gen.py) desired _cgan_index_ in line 29. (for training set _activate_training_ in line 65 to True, and set it to False for inference.)
 
-
-Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 to the column number of path power or time of arrival(ToA)/delay to train CGAN models to generate these values.
+Note: This script defaults to generating the four angles per path (AoD azimuth, AoD elevation, AoA azimuth, AoA elevation). To instead train a CGAN that generates power or time-of-arrival (ToA/delay), set _output_size_ = 1 in line 67 and replace _output_cols_ in line 111 with the appropriate column index. Power and ToA values are in physical units (Watts and seconds), so they have a much wider dynamic range than angles; verify that the MinMaxScaler produces sensible scaled values for your data, and consider a log transform if not.
 
 ## CG-CGAN inference pipeline to generate angle values by using trained classifiers and CGAN models on the test dataset
 1. Run [cgcgan_inference.py](cgcgan_inference.py), which uses test_dataset(including no_path users) and trained models (classifiers, CGAN models, and their weights) to generate and save 4 angle values. (You must have saved scalers from previous models to normalize and denormalize the values, saved the KNN model, and saved model weights for the NoP classifier and CGAN models).
