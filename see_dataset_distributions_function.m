@@ -99,4 +99,8 @@ for i=1:size(value,2)
 end
 
 end
-%see_dataset_distributions_function('training_dataset_allBS_5_k1_nopath_removed.mat', 'test_dataset_allBS_5_k1_nopath_removed.mat', 53, 500, 0)
+
+% Example usage:
+% see_dataset_distributions_function('training_dataset_O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1.mat', ...
+%                                    'test_dataset_O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1.mat', ...
+%                                    53, 500, 0)
