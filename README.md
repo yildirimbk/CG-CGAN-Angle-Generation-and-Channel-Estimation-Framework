@@ -49,7 +49,8 @@ The output estimated_angles_{RUN_TAG}.mat contains a matrix of shape (num_sample
 
 The inference script saves four files needed for the downstream MATLAB channel-estimation evaluation: estimated_num_paths_{RUN_TAG}.pkl (predicted number of paths per sample), estimated_angles_{RUN_TAG}.mat (generated angle values), generated_rt_outputs_{RUN_TAG}.mat (combined: estimated NoP + generated angles + ground-truth phase/delay/power), and real_rt_outputs_{RUN_TAG}.mat (ground-truth ray-tracing outputs for comparison). The "rt_outputs" files have the format expected by the DeepMIMO generator for producing the receive and transmit array response matrices.
 
-2. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs compatible with the DeepMIMO generator.
-4. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
-6. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
-7. ADDD NMSE ESTIMATION CODES MATLAB.
+2. Use [rayt_output_creator.m](rayt_output_creator.m) function in MATLAB to convert the flat ray-tracing output matrices saved by the Python inference script into per-sample struct arrays with field names matching the DeepMIMO generator API. The function writes real_rt_outputs_after_matlab.mat and generated_rt_outputs_after_matlab.mat, both of which are required for the downstream array-response generation step.
+
+3. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
+7. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
+8. ADDD NMSE ESTIMATION CODES MATLAB.
