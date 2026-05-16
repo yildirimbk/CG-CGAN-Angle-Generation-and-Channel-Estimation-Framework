@@ -32,11 +32,8 @@ Note: You may see the distributions of each parameter by using the [see_dataset_
 
 ## Training and inference of CGAN models for angle generation
 1. There are 4 architecturally identical conditional generative adversarial network (CGAN) models for each propagation path. The first CGAN is trained on a dataset with 1 or more paths; the second CGAN is trained on a dataset with 2 or more paths, and so on. Hence, first use [dataset_adjustment_to_create_only_nmore_path.m](dataset_adjustment_to_create_only_nmore_path.m) to create separate datasets for each CGAN model.
-2. Train CGAN models (for training set _activate_training_ in line 42 to True, and set it to False for inference.)
-  * 1st path: Run [cgan_1st_path_angle_gen.py](cgan_1st_path_angle_gen.py)
-  * 2nd path: Run [cgan_2nd_path_angle_gen.py](cgan_2nd_path_angle_gen.py)
-  * 3rd path: Run [cgan_3rd_path_angle_gen.py](cgan_3rd_path_angle_gen.py)
-  * 4th path: Run [cgan_4th_path_angle_gen.py](cgan_4th_path_angle_gen.py)
+2. Train CGAN models by running with [unified_cgan_angle_gen.py](unified_cgan_angle_gen.py) desired _cgan_index_ in line (for training set _activate_training_ in line 42 to True, and set it to False for inference.)
+
 
 Note: You may change the _output size_ in line 43 to 1 and _outputs_ in line 78 to the column number of path power or time of arrival(ToA)/delay to train CGAN models to generate these values.
 
