@@ -45,11 +45,19 @@ gen_rx_out_path            = os.path.join(OUTPUT_DIR, f'Generated_array_response
 with open(parameters_pkl_path, 'rb') as f:
     ext_parameters = pickle.load(f)
 
+# Change BS Antenna Configuration    
+for bs in range(18):
+    ext_parameters['bs_antenna'][bs]['shape'] = [8,4]
+
+# Change User Antenna Configuration
+ext_parameters['ue_antenna']['shape'] = [8,4]
+
 print('BS antenna shape:', ext_parameters['bs_antenna'][0]['shape'])
 print('UE antenna shape:', ext_parameters['ue_antenna']['shape'])
 
-tx_ant_params = ext_parameters['bs_antenna'][0]
-rx_ant_params = ext_parameters['ue_antenna']
+tx_ant_params=ext_parameters['bs_antenna']
+tx_ant_params = tx_ant_params[0]
+rx_ant_params=ext_parameters['ue_antenna']
 
 with open(real_rt_pkl_path, 'rb') as f:
     rayt_output_gt = pickle.load(f)
