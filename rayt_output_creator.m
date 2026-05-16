@@ -90,10 +90,7 @@ fprintf('Saved: %s\n', fullfile(output_dir, 'generated_rt_outputs_after_matlab.m
 end
 
 
-
 % Example usage:
-% see_dataset_distributions_function('real_rt_outputs_O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1.mat', ...
-%                                    'generated_rt_outputs_O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1.mat', ...
-%                                    4, 'outputs')
-
-
+% rayt_output_creator('outputs/real_rt_outputs_O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1.mat', ...
+%                     'outputs/generated_rt_outputs_O1_60_Lp4_BS18_rows1-2751_TX8x4_RX4x2_sc1.mat', ...
+%                     4, 'outputs')
