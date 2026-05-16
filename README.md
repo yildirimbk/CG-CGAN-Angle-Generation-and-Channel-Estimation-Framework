@@ -24,7 +24,7 @@ This repository contains the code implementation for the paper "Angle Generation
 Note: You may see the distributions of each parameter by using the [see_dataset_distributions_function.m](see_dataset_distributions_function.m) function for training, validation, and test datasets.
 
 ## Training and inference of LoS classifier
-1. Run [MLP_LoS_Classifier.py](MLP_LoS_Classifier.py): for training set _activate_training_ in line 39 to True, and set it to False for inference.
+1. Run [MLP_LoS_Classifier.py](MLP_LoS_Classifier.py): for training set _activate_training_ in line 36 to True, and set it to False for inference.
 
 ## Training and inference of the number of paths (NoP) classifier
 1. Remove No-path users from the dataset by running [dataset_adjustment_to_remove_zeros.m](dataset_adjustment_to_remove_zeros.m) file, which will create new datasets for NoP classification.
