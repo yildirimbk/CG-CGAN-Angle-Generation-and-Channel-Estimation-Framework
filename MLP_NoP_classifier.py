@@ -54,13 +54,13 @@ test_data_path     = os.path.join(INPUT_DIR, f'test_dataset_{RUN_TAG}_no_path_re
 # If you kept the original single-level MATLAB save format, change the three lines below to:
 #   train_data = f['training_dataset'][:].T   (etc., 'val_dataset', 'test_dataset')
 with h5py.File(training_data_path, 'r') as f:
-    train_data = f['training_data']['training_data'][:].T
+    train_data = f['training_data'][:].T
     print("Training data loaded successfully:", train_data.shape)
 with h5py.File(val_data_path, 'r') as f:
-    val_data = f['val_data']['val_data'][:].T
+    val_data = f['val_data'][:].T
     print("Validation data loaded successfully:", val_data.shape)
 with h5py.File(test_data_path, 'r') as f:
-    test_data = f['test_data']['test_data'][:].T
+    test_data = f['test_data'][:].T
     print("Test data loaded successfully:", test_data.shape)
 
 def split_dataset(dataset):
