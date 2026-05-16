@@ -53,5 +53,21 @@ The inference script saves four files needed for the downstream MATLAB channel-e
 
 3. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
 7. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
-8. (Optional) We have already split the test dataset for channel data. You may directly use it in subsequent MATLAB file for channel estimation or you can create the test dataset channel again by running the [manual_DeepMIMO_channel_generation.py](manual_DeepMIMO_channel_generation.py). To run this you need [helper_manual_DeepMIMO_channel_generation.py](helper_manual_DeepMIMO_channel_generation.py).
-9. 
+8. (Optional) Manual channel construction for antenna-shape variants: The test channel split saved by [dataset_prep_all_BSs.py](dataset_prep_all_BSs.py) (true_channels_test_data_{RUN_TAG}.mat) contains channels for the antenna shape used during DeepMIMO generation. The MATLAB evaluation script loads these channels by default, so for reproducing the paper's main results, no extra step is needed.
+
+However, if you want to evaluate a different antenna architecture (e.g., 16x8 instead of 8x4) without regenerating the entire DeepMIMO dataset, you can rebuild channels from the saved ray-tracing data using the manual pipeline. The ray-tracing outputs are antenna-agnostic; only the array responses and channels need to be recomputed. To do this:
+
+In [save_array_responses.py](save_array_responses.py) and [manual_DeepMIMO_channel_generation.py](manual_DeepMIMO_channel_generation.py), override the antenna shapes after loading parameters_{RUN_TAG}.pkl:
+
+```python
+  # Change BS Antenna Configuration    
+for bs in range(18):
+    ext_parameters['bs_antenna'][bs]['shape'] = [8,4]
+
+# Change User Antenna Configuration
+ext_parameters['ue_antenna']['shape'] = [8,4]
+```
+
+Run [manual_DeepMIMO_channel_generation.py](manual_DeepMIMO_channel_generation.py). It depends on [helper_manual_DeepMIMO_channel_generation.py](helper_manual_DeepMIMO_channel_generation.py), a modified copy of DeepMIMOv3's construct_deepmimo.py. The helper is included in the repo and imported locally; no changes to the installed DeepMIMOv3 package are required.
+
+The script writes true_channels_test_{RUN_TAG}.hdf5 (real channels, dataset key true_channel matrices). For the default antenna shape, this is bit-for-bit identical to the test split MAT file. In the MATLAB evaluation script, switch the channel-loading block to read this HDF5 file instead of the MAT file (one block at the top of the script, commented inline for guidance).
