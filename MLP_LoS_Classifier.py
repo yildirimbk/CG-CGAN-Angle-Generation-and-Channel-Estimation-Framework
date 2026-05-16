@@ -33,7 +33,7 @@ OUTPUT_DIR = 'outputs'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 ### MODEL PARAMETERS ###
-activate_training = False
+activate_training = True
 output_size = 3            # 3 classes: blocked / NLoS / LoS
 input_size = 4             # BS (x,y), UE (x,y)
 batch_size = 256
