@@ -159,14 +159,6 @@ test_data     = fill_dataset_array(test_rayt,  test_BS_loc,  test_user_loc,  tes
 
 
 ## SAVE DATASETS
-training_data = {'training_data':training_data}
-val_data = {'val_data':val_data}
-test_data = {'test_data':test_data}
-true_channels_training_data = {'true_channels_training_data':train_channels}
-true_channels_val_data = {'true_channels_val_data':val_channels}
-true_channels_test_data = {'true_channels_test_data':test_channels}
-
-
 # Save each dataset in a separate file
 hdf5storage.write(
     { "training_data": training_data },
