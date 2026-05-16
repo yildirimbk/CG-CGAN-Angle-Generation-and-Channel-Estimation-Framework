@@ -46,8 +46,10 @@ Per-path scalers: test_label_scaler_{ordinal}_path.pkl and outputs_minmaxscaler_
 
 The output estimated_angles_{RUN_TAG}.mat contains a matrix of shape (num_samples, 4 * MAX_PATHS). The 4 angles per path are stored in the column layout: columns 1 to MAX_PATHS hold azimuth AoD across paths, columns MAX_PATHS+1 to 2*MAX_PATHS hold elevation AoD, then azimuth AoA, then elevation AoA. The image below compares ground-truth angles (top row) with generated angles (bottom row) for the first 20 user-BS pairs in the test dataset.
 ![g_t_vs_generated_angles.](https://github.com/yildirimbk/CG-CGAN-Channel-Estimation-Framework/blob/main/g_t_vs_generated_angles.jpg)
-2. Run [save_g_t_and_gen_rt_outputs.py](save_g_t_and_gen_rt_outputs.py) to save ground_truth and generated ray tracing outputs. These files are required to generate receive (A<sub>R</sub>) and transmit (A<sub>T</sub>) array steering/response matrices via the DeepMIMO generator without receiving error.
-3. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs compatible with the DeepMIMO generator.
+
+The inference script saves four files needed for the downstream MATLAB channel-estimation evaluation: estimated_num_paths_{RUN_TAG}.pkl (predicted number of paths per sample), estimated_angles_{RUN_TAG}.mat (generated angle values), generated_rt_outputs_{RUN_TAG}.mat (combined: estimated NoP + generated angles + ground-truth phase/delay/power), and real_rt_outputs_{RUN_TAG}.mat (ground-truth ray-tracing outputs for comparison). The "rt_outputs" files have the format expected by the DeepMIMO generator for producing the receive and transmit array response matrices.
+
+2. Use [rayt_output_creator.m](rayt_output_creator.m) function to add ray tracing output names and make ray tracing outputs compatible with the DeepMIMO generator.
 4. Run [convert_mat_to_pickle.py](convert_mat_to_pickle.py) to convert the output of [rayt_output_creator.m](rayt_output_creator.m) function in _.mat_ into _.pkl_ type.
-5. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
-6. ADDD NMSE ESTIMATION CODES MATLAB.
+6. Run [save_array_responses.py](save_array_responses.py) to generate and save both ground-truth and generated A<sub>R</sub> and A<sub>T</sub>.
+7. ADDD NMSE ESTIMATION CODES MATLAB.
