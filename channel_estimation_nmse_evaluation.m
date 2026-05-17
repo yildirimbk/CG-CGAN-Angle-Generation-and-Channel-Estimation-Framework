@@ -9,6 +9,13 @@
 % [1] J. Rodriguez-Fernandez et al., "Frequency-Domain Compressive Channel Estimation
 %     for Frequency-Selective Hybrid Millimeter Wave MIMO Systems," IEEE TWC, 2018.
 
+% Note on vec convention: this LS branch uses ROW-MAJOR vec(H), while the SW-OMP
+% branch above uses MATLAB-native COLUMN-MAJOR vec(H). Each branch is internally
+% consistent (matching flattening, Kronecker order, and reconstruction). The
+% commented-out lines below show the column-major alternative. Do NOT switch one
+% line without switching all three; mixing conventions breaks the LS measurement
+% model and degrades NMSE/SE by ~1 dB.
+
 clc;
 clear;
 
@@ -247,10 +254,10 @@ for j = 1:Nc
     N_paths    = size(Gen_RX_comb, 2);
 
     %% Build measurement matrices for GT and Gen branches
-    kronecker_gt  = kron(GT_TX_comb,  GT_RX_comb);
-    kronecker     = kron(Gen_TX_comb, Gen_RX_comb);
-    inv_kronecker_gt = pinv(kronecker_gt);
-    inv_kronecker    = pinv(kronecker);
+    kronecker_gt = kron(GT_RX_comb,GT_TX_comb);
+    kronecker = kron(Gen_RX_comb,Gen_TX_comb);
+    %kronecker_gt  = kron(GT_TX_comb,  GT_RX_comb);
+    %kronecker     = kron(Gen_TX_comb, Gen_RX_comb);
 
     M_gt = zeros(Ntrain * Lr, N_paths_gt * N_paths_gt);
     M    = zeros(Ntrain * Lr, N_paths * N_paths);
@@ -266,7 +273,9 @@ for j = 1:Nc
     nn   = zeros(Lr * Ntrain, Nfft);
 
     for k3 = 1:Nfft
-        flattened_Hk = reshape(squeeze(Hk(j, :, :, k3)), [], 1);
+        temp = squeeze(Hk(j,:,:,k3));
+        flattened_Hk = reshape(temp.', [], 1); % row-major flattening into column vector
+        %flattened_Hk = reshape(squeeze(Hk(j, :, :, k3)), [], 1);
 
         signal_k_gt = Phi * flattened_Hk;
         P_signal_gt = mean(abs(signal_k_gt).^2);
@@ -289,7 +298,7 @@ for j = 1:Nc
     [x_hat,    ~, ~] = LS_estimation(M_w,    reshape(Yw_j,    1, Ntrain*Lr, Nfft), Nfft, Ntrain, Lr, N_paths);
 
     for k = 1:Nfft
-        reconsH_gt = GT_RX_comb  * reshape(x_hat_gt(:, k), N_paths_gt, N_paths_gt) * GT_TX_comb.';
+        reconsH_gt = GT_RX_comb * reshape(x_hat_gt(:, k), N_paths_gt, N_paths_gt) * GT_TX_comb.';
         reconsH    = Gen_RX_comb * reshape(x_hat(:, k),    N_paths,    N_paths)    * Gen_TX_comb.';
 
         Ch_pred_mat_gt(:, k, j)     = reshape(reconsH_gt, Nr * Nt, 1);
