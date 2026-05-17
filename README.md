@@ -74,4 +74,13 @@ The script writes true_channels_test_{RUN_TAG}.hdf5 (real channels, dataset key 
 
 6. Run [channel_estimation_nmse_evaluation.m](channel_estimation_nmse_evaluation.m) to compute the NMSE of the SW-OMP baseline and the CG-CGAN-guided LS estimation. The script depends on [OMP_weight.m](OMP_weight.m) (SW-OMP iteration) and [LS_estimation.m](LS_estimation.m) functions (support-constrained LS using the trained CG-CGAN array responses). The script loads outputs/[rand_ind_ch.mat](rand_ind_ch.mat), a fixed set of 1000 random channel indices sampled from non-zero channels in the test split. This file ships with the repo to ensure all reported numbers can be reproduced exactly. Do not delete or regenerate it.
 
-7. 
+7. Run [spectral_efficiency_evaluation.m](spectral_efficiency_evaluation.m) to compute the average spectral efficiency (SE) of the trained CG-CGAN framework. The script evaluates five methods at the configured SNR and pilot count:
+
+CG-CGAN-LS (proposed): SE achievable with hybrid SVD precoding/combining built from the CG-CGAN-LS channel estimate.
+GT-LS (oracle): same method using ground-truth array responses.
+SW-OMP baseline: SE achievable with SVD precoding/combining built from the SW-OMP estimate.
+Fully digital SVD (upper bound): SVD precoding/combining with perfect channel knowledge.
+O-DFT codebook (perfect CSI): greedy selection of Ns orthogonal beam pairs from a 4096-codeword oversampled DFT codebook (matched to the SW-OMP grid size) with perfect channel knowledge.
+
+All five methods use equal-power allocation across Ns streams. The script depends on [OMP_weight.m](OMP_weight.m), [LS_estimation.m](LS_estimation.m), and the same outputs/[rand_ind_ch.mat](rand_ind_ch.mat) reproducibility file as the NMSE script.
+To sweep SNR or pilot count, adjust data_set and Ntrain at the top of the script. Reproducing the SE curves in the paper requires running once per SNR value (data_set from 0 to 8).
