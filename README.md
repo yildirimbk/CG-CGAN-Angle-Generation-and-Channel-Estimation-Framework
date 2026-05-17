@@ -77,9 +77,13 @@ The script writes true_channels_test_{RUN_TAG}.hdf5 (real channels, dataset key 
 7. Run [spectral_efficiency_evaluation.m](spectral_efficiency_evaluation.m) to compute the average spectral efficiency (SE) of the trained CG-CGAN framework. The script evaluates five methods at the configured SNR and pilot count:
 
 CG-CGAN-LS (proposed): SE achievable with hybrid SVD precoding/combining built from the CG-CGAN-LS channel estimate.
+
 GT-LS (oracle): same method using ground-truth array responses.
+
 SW-OMP baseline: SE achievable with SVD precoding/combining built from the SW-OMP estimate.
+
 Fully digital SVD (upper bound): SVD precoding/combining with perfect channel knowledge.
+
 O-DFT codebook (perfect CSI): greedy selection of Ns orthogonal beam pairs from a 4096-codeword oversampled DFT codebook (matched to the SW-OMP grid size) with perfect channel knowledge.
 
 All five methods use equal-power allocation across Ns streams. The script depends on [OMP_weight.m](OMP_weight.m), [LS_estimation.m](LS_estimation.m), and the same outputs/[rand_ind_ch.mat](rand_ind_ch.mat) reproducibility file as the NMSE script.
