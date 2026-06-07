@@ -1,5 +1,19 @@
 # CG-CGAN-Channel-Estimation-Framework
-This repository contains the code implementation for the paper "Angle Generation and Channel Estimation via Classifiers-Guided Conditional GANs" by Bumin Kagan Yildirim, Asmaa Abdallah, Abdulkadir Celik, and Ahmed M. Eltawil.
+This repository contains the code implementation for the paper ["Angle Generation and Channel Estimation via Classifiers-Guided Conditional GANs"](https://ieeexplore.ieee.org/document/11547174) by Bumin Kagan Yildirim, Asmaa Abdallah, Abdulkadir Celik, and Ahmed M. Eltawil.
+
+Please cite the following source:
+```python
+  @ARTICLE{11547174,
+  author={Yildirim, Bumin K. and Abdallah, Asmaa and Celik, Abdulkadir and Eltawil, Ahmed M.},
+  journal={IEEE Open Journal of the Communications Society}, 
+  title={Angle Generation and Channel Estimation via Classifiers-Guided Conditional GANs}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Modeling;Accuracy;Matrices;Signal to noise ratio;Training;MIMO;Vectors;Channel estimation;Estimation;Waves;5G;6G;channel estimation;compressive sensing;conditional generative adversarial network;convolutional neural networks;deep learning;frequency-selective channel;mMIMO;mmWave;sparse recovery},
+  doi={10.1109/OJCOMS.2026.3699200}}
+```
 
 # Instructions to reproduce the paper result
 ## Creating the custom dataset from DeepMIMO
