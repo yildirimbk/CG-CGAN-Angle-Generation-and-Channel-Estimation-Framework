@@ -4,15 +4,16 @@ This repository contains the code implementation for the paper ["Angle Generatio
 Please cite the following source:
 ```python
   @ARTICLE{11547174,
-  author={Yildirim, Bumin K. and Abdallah, Asmaa and Celik, Abdulkadir and Eltawil, Ahmed M.},
+  author={Yildirim, Bumin Kagan and Abdallah, Asmaa and Celik, Abdulkadir and Eltawil, Ahmed M.},
   journal={IEEE Open Journal of the Communications Society}, 
   title={Angle Generation and Channel Estimation via Classifiers-Guided Conditional GANs}, 
   year={2026},
-  volume={},
+  volume={7},
   number={},
-  pages={1-1},
+  pages={6199-6224},
   keywords={Modeling;Accuracy;Matrices;Signal to noise ratio;Training;MIMO;Vectors;Channel estimation;Estimation;Waves;5G;6G;channel estimation;compressive sensing;conditional generative adversarial network;convolutional neural networks;deep learning;frequency-selective channel;mMIMO;mmWave;sparse recovery},
   doi={10.1109/OJCOMS.2026.3699200}}
+
 ```
 
 # Instructions to reproduce the paper result
